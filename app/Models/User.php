@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -41,4 +42,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Tickets reportados por el usuario
+    public function reportedTickets()
+    {
+        return $this->hasMany(Ticket::class, 'user_id');
+    }
+
+    // Tickets asignados al técnico
+    public function assignedTickets()
+    {
+        return $this->hasMany(Ticket::class, 'assigned_to');
+    }
+
+    // Verificar si el usuario es administrador
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    // Verificar si el usuario es técnico
+    public function isTechnician()
+    {
+        return $this->role === 'technician';
+    }
 }
