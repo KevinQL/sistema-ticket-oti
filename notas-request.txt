@@ -1,0 +1,30 @@
+CERRAR SESIÓN
+------------------------
+> curl -X POST http://localhost:8000/api/login -H "Content-Type: application/json" -d "{\"email\":\"admin@example.com\",\"password\":\"password\"}"
+
+CERRAR SESIÓN
+------------------------
+> curl -X POST "http://localhost:8000/api/logout" -H "Authorization: Bearer 1|6cH3GpB2ijioJPkKBnMgtq612AHBb0Ds6u1QD1FH" -H "Accept: application/json"
+
+------------------------
+--- LISTA DE OFICINAS
+> curl -X GET http://localhost:8000/api/offices -H "Authorization: Bearer 1|6cH3GpB2ijioJPkKBnMgtq612AHBb0Ds6u1QD1FH" -H "Accept: application/json"
+
+--- LISTAR TICKET
+> curl -X GET http://localhost:8000/api/tickets -H "Authorization: Bearer 1|6cH3GpB2ijioJPkKBnMgtq612AHBb0Ds6u1QD1FH" -H "Accept: application/json"
+
+--- CREAMOS NUEVO TICKET
+> curl -X POST "http://localhost:8000/api/tickets" -H "Authorization: Bearer 1|6cH3GpB2ijioJPkKBnMgtq612AHBb0Ds6u1QD1FH" -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"title\":\"Problema con impresora\",\"description\":\"La impresora no responde a las solicitudes de impresion\",\"priority\":\"high\",\"service_type\":\"corrective\",\"equipment_id\":2}"
+
+--- OBTENER DETALLES DEL TICKET
+> curl -X GET "http://localhost:8000/api/tickets/1" -H "Authorization: Bearer 1|6cH3GpB2ijioJPkKBnMgtq612AHBb0Ds6u1QD1FH" -H "Accept: application/json"
+
+ASIGNAR TICKET A UN TÉCNICO
+> curl -X PUT "http://localhost:8000/api/tickets/1/assign" -H "Authorization: Bearer 1|6cH3GpB2ijioJPkKBnMgtq612AHBb0Ds6u1QD1FH" -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"technician_id\":2}"
+
+MARCAR TICKET COMO RESUELTO
+> curl -X PUT "http://localhost:8000/api/tickets/1/resolve" -H "Authorization: Bearer 1|6cH3GpB2ijioJPkKBnMgtq612AHBb0Ds6u1QD1FH" -H "Content-Type: application/json" -H "Accept: application/json" -d "{\"resolution_notes\":\"Se reinició el spooler de impresión y se configuró nuevamente la impresora\"}"
+
+
+--- pruebas -----------
+2|xYPhMS24GCiOGpXGl96vi75GdgalfGOtCS3OtB9t

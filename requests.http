@@ -1,0 +1,29 @@
+### HTTP Request to login to the application
+### Login Request
+POST http://localhost:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "password": "password"
+}
+
+### logout Request
+POST http://localhost:8000/api/logout
+Content-Type: application/json
+Authorization: Bearer 6|owVvyMqgCElsBjannIwaP0MSt9GMtgdZX7iy7X3Zs
+
+### Get all offices Request
+GET http://localhost:8000/api/offices
+Content-Type: application/json
+Authorization: Bearer 6|owVvyMqgCElsBjannIwaP0MSt9GMtgdZX7iy7X3Z
+
+### get all user Request
+GET http://localhost:8000/api/user
+Content-Type: application/json
+Authorization: Bearer 6|owVvyMqgCElsBjannIwaP0MSt9GMtgdZX7iy7X3Z
+
+### get all users Request
+GET http://localhost:8000/api/users
+Content-Type: application/json
+Authorization: Bearer 6|owVvyMqgCElsBjannIwaP0MSt9GMtgdZX7iy7X3Z

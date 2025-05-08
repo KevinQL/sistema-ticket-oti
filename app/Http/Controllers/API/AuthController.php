@@ -44,4 +44,18 @@ class AuthController extends Controller
     {
         return response()->json($request->user());
     }
+
+    
+    /**
+     * Get all users
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function users(Request $request)
+    {
+        $users = User::all();
+        return response()->json($users);
+    }
+
 }
