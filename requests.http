@@ -1,3 +1,5 @@
+@tokenapp = 7|KuzT0jnKrzAx8y4zd8qQapQPjtsttLMpRbKwJKFB
+
 ### HTTP Request to login to the application
 ### Login Request
 POST http://localhost:8000/api/login
@@ -11,19 +13,29 @@ Content-Type: application/json
 ### logout Request
 POST http://localhost:8000/api/logout
 Content-Type: application/json
-Authorization: Bearer 6|owVvyMqgCElsBjannIwaP0MSt9GMtgdZX7iy7X3Zs
+Authorization: Bearer {{tokenapp}}
 
 ### Get all offices Request
 GET http://localhost:8000/api/offices
 Content-Type: application/json
-Authorization: Bearer 6|owVvyMqgCElsBjannIwaP0MSt9GMtgdZX7iy7X3Z
+Authorization: Bearer {{tokenapp}}
 
 ### get all user Request
 GET http://localhost:8000/api/user
 Content-Type: application/json
-Authorization: Bearer 6|owVvyMqgCElsBjannIwaP0MSt9GMtgdZX7iy7X3Z
+Authorization: Bearer {{tokenapp}}
 
 ### get all users Request
 GET http://localhost:8000/api/users
 Content-Type: application/json
-Authorization: Bearer 6|owVvyMqgCElsBjannIwaP0MSt9GMtgdZX7iy7X3Z
+Authorization: Bearer {{tokenapp}}
+
+### obtener todos los equipos Request
+GET http://localhost:8000/api/equipment
+Content-Type: application/json
+Authorization: Bearer {{tokenapp}}
+
+### obtener todas oficinas
+GET http://localhost:8000/api/offices
+Content-Type: application/json
+Authorization: Bearer {{tokenapp}}
