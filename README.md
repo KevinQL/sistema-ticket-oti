@@ -7,97 +7,82 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Sistema de Gestión de Tickets de Soporte - OTI
+# Sistema de Tickets - Backend API
 
 ## Descripción
-Sistema de registro y seguimiento de incidencias para la Oficina de Tecnologías de Información (OTI). Este sistema permite gestionar tickets de soporte técnico, mantenimiento y capacitación para los equipos informáticos de la institución.
-
-## Características Implementadas
-
-### Gestión de Oficinas
-- Registro y gestión de oficinas
-- Seguimiento de ubicación y departamento
-- Estado activo/inactivo de oficinas
-
-### Gestión de Equipos
-- Registro detallado de equipos (PCs, Impresoras, Laptops)
-- Información de garantía y especificaciones técnicas
-- Seguimiento del estado operativo
-- Asociación con oficinas
-
-### Sistema de Tickets
-- Creación de tickets de soporte
-- Asignación a técnicos
-- Seguimiento de estado (abierto, en progreso, resuelto, cerrado)
-- Priorización de tickets (bajo, medio, alto, crítico)
-- Tipos de servicio (preventivo, correctivo, capacitación, instalación)
-- Registro de resolución y notas
-
-### Autenticación y Seguridad
-- Autenticación mediante tokens (Laravel Sanctum)
-- Roles de usuario (administrador, técnico, usuario)
-- Protección de rutas API
+API REST desarrollada en Laravel para gestionar un sistema de tickets. La API proporciona endpoints para la gestión de tickets, usuarios, oficinas y equipos.
 
 ## Tecnologías Utilizadas
-- Laravel 8
+- Laravel
 - MySQL
-- Laravel Sanctum para autenticación
-- Soft Deletes para eliminación suave
+- Sanctum para autenticación
+- CORS habilitado para comunicación con frontend
 
-## Estructura de la Base de Datos
-- Usuarios (roles y autenticación)
-- Oficinas (información departamental)
-- Equipos (inventario técnico)
-- Tickets (gestión de incidencias)
+## Configuración del Proyecto
 
-## API Endpoints
+### Requisitos Previos
+- PHP >= 7.4
+- Composer
+- MySQL
+- XAMPP o servidor similar
 
-### Autenticación
-- POST /api/login - Iniciar sesión
-- POST /api/logout - Cerrar sesión
-- GET /api/user - Obtener usuario actual
-
-### Oficinas
-- GET /api/offices - Listar oficinas
-- POST /api/offices - Crear oficina
-- GET /api/offices/{id} - Ver detalles de oficina
-- PUT /api/offices/{id} - Actualizar oficina
-- DELETE /api/offices/{id} - Eliminar oficina
-
-### Equipos
-- GET /api/equipment - Listar equipos
-- POST /api/equipment - Registrar equipo
-- GET /api/equipment/{id} - Ver detalles de equipo
-- PUT /api/equipment/{id} - Actualizar equipo
-- DELETE /api/equipment/{id} - Eliminar equipo
-
-### Tickets
-- GET /api/tickets - Listar tickets
-- POST /api/tickets - Crear ticket
-- GET /api/tickets/{id} - Ver detalles de ticket
-- PUT /api/tickets/{id} - Actualizar ticket
-- DELETE /api/tickets/{id} - Eliminar ticket
-- PUT /api/tickets/{id}/assign - Asignar ticket a técnico
-- PUT /api/tickets/{id}/resolve - Marcar ticket como resuelto
-
-## Instrucciones de Instalación
+### Instalación
 1. Clonar el repositorio
 2. Ejecutar `composer install`
 3. Copiar `.env.example` a `.env` y configurar la base de datos
 4. Ejecutar `php artisan key:generate`
-5. Ejecutar `php artisan migrate --seed`
-6. Ejecutar `php artisan serve`
+5. Ejecutar migraciones: `php artisan migrate`
+6. Ejecutar seeders: `php artisan db:seed`
 
-## Credenciales de Prueba
-- Administrador: admin@example.com / password
-- Técnico 1: tecnico1@example.com / password
-- Técnico 2: tecnico2@example.com / password
-- Usuario: usuario@example.com / password
+### Configuración CORS
+El backend está configurado para aceptar peticiones del frontend (http://localhost:5173) con las siguientes configuraciones en `config/cors.php`:
+```php
+'allowed_origins' => ['http://localhost:5173'],
+'supports_credentials' => true,
+```
 
-## Próximas Funcionalidades
-- Sistema de notificaciones
-- Subida de archivos adjuntos
-- Sistema de comentarios en tickets
-- Dashboard con estadísticas
-- Generación de reportes
-- Historial de mantenimientos por equipo
+## API Endpoints
+
+### Autenticación
+- POST `/api/login` - Iniciar sesión
+- POST `/api/logout` - Cerrar sesión (requiere autenticación)
+- GET `/api/user` - Obtener usuario actual (requiere autenticación)
+
+### Tickets (requieren autenticación)
+- GET `/api/tickets` - Listar tickets
+- POST `/api/tickets` - Crear ticket
+- GET `/api/tickets/{id}` - Ver ticket específico
+- PUT `/api/tickets/{id}` - Actualizar ticket
+- DELETE `/api/tickets/{id}` - Eliminar ticket
+- PUT `/api/tickets/{id}/assign` - Asignar ticket
+- PUT `/api/tickets/{id}/resolve` - Resolver ticket
+
+### Oficinas (requieren autenticación)
+- GET `/api/offices` - Listar oficinas
+- POST `/api/offices` - Crear oficina
+- GET `/api/offices/{id}` - Ver oficina específica
+- PUT `/api/offices/{id}` - Actualizar oficina
+- DELETE `/api/offices/{id}` - Eliminar oficina
+
+### Equipos (requieren autenticación)
+- GET `/api/equipment` - Listar equipos
+- POST `/api/equipment` - Crear equipo
+- GET `/api/equipment/{id}` - Ver equipo específico
+- PUT `/api/equipment/{id}` - Actualizar equipo
+- DELETE `/api/equipment/{id}` - Eliminar equipo
+
+## Estado Actual
+- ✅ Configuración básica del proyecto
+- ✅ Autenticación implementada
+- ✅ CRUD de Tickets
+- ✅ CRUD de Oficinas
+- ✅ CRUD de Equipos
+- ✅ Configuración CORS para frontend
+
+## Pendiente
+- [ ] Implementar sistema de notificaciones
+- [ ] Agregar validaciones adicionales
+- [ ] Mejorar manejo de errores
+- [ ] Implementar sistema de roles y permisos
+- [ ] Agregar tests automatizados
+- [ ] Documentación API con Swagger/OpenAPI
